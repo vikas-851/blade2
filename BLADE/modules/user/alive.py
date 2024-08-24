@@ -12,13 +12,13 @@ from telegraph import exceptions, upload_file
 from config import BOT_VER, CHANNEL
 from config import CMD_HANDLER
 from config import GROUP, OWNER_ID
-from X import CMD_HELP, StartTime
-from X.helpers.basic import edit_or_reply
-from X.helpers.PyroHelpers import ReplyCheck
-from X.helpers.SQL.globals import gvarstatus
-from X.helpers.tools import convert_to_image
-from X.utils import get_readable_time
-from X.utils.misc import restart
+from BLADE import CMD_HELP, StartTime
+from BLADE.helpers.basic import edit_or_reply
+from BLADE.helpers.PyroHelpers import ReplyCheck
+from BLADE.helpers.SQL.globals import gvarstatus
+from BLADE.helpers.tools import convert_to_image
+from BLADE.utils import get_readable_time
+from BLADE.utils.misc import restart
 
 from .help import *
 
@@ -46,8 +46,6 @@ async def alip(client: Client, message: Message):
         f"{emoji} <b>𝚅𝙴𝚁𝚂𝙸𝙾𝙽:</b> <code>{BOT_VER}</code> \n"
         f"{emoji} <b>𝙼𝙾𝚃𝙴𝚁𝚂:</b> <code>{len(modules)} Modules</code> \n"
         f"{emoji} <b>𝙿𝚈𝚃𝙷𝙾𝙽 𝚅𝙴𝚁𝚂𝙸𝙾𝙽:</b> <code>{python_version()}</code> \n"
-        f"{emoji}✧[𝙶𝚁𝙾𝚄𝙿](https://t.me/Japanese_Userbot_Support)** \n" 
-        f"{emoji}✧[𝙲𝙷𝙰𝙽𝙽𝙴𝙻](https://t.me/Japanese_Userbot)** \n"
         
     )
     try:

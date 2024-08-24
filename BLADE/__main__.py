@@ -4,7 +4,7 @@ from uvloop import install
 
 
 from BLADE.modules import ALL_MODULES
-from BLADE import BOTLOG_CHATID, LOGGER, LOOP, aiosession, app, bots, ids, bot1
+from BLADE import BOTLOG_CHATID, LOGGER, LOOP, app, bots, ids, bot1
 from BLADE.helpers import join
 from BLADE.helpers.misc import create_botlog, heroku
 
@@ -23,7 +23,7 @@ async def main():
     await app.start()
     print("𝐋𝐎𝐆: 𝐅𝐨𝐮𝐧𝐝𝐞𝐝 𝐁𝐨𝐭 𝐭𝐨𝐤𝐞𝐧 𝐁𝐨𝐨𝐭𝐢𝐧𝐠..")
     for all_module in ALL_MODULES:
-        importlib.import_module("X.modules" + all_module)
+        importlib.import_module("BLADE.modules" + all_module)
         print(f"𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 𝐈𝐦𝐩𝐨𝐫𝐭𝐞𝐝 {all_module} ")
     for bot in bots:
         try:
@@ -41,7 +41,7 @@ async def main():
     if not str(BOTLOG_CHATID).startswith("-100"):
         await create_botlog(bot1)
     await idle()
-    await aiosession.close()
+    
 
 
 if __name__ == "__main__":

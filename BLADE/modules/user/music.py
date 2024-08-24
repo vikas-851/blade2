@@ -3,7 +3,7 @@ import asyncio
 from pyrogram import filters, Client 
 from pyrogram.types import Message
 
-from X.helpers.PyroHelpers import ReplyCheck
+from BLADE.helpers.PyroHelpers import ReplyCheck
 from .help import *
 
 

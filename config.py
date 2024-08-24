@@ -1,7 +1,7 @@
 import os
 from distutils.util import strtobool
 from os import getenv
-from X.helpers.cmd import cmd
+from BLADE.helpers.cmd import cmd
 from dotenv import load_dotenv
 
 load_dotenv("config.env")

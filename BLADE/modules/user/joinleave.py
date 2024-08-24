@@ -1,10 +1,10 @@
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
-from X.helpers.adminHelpers import DEVS
+from BLADE.helpers.adminHelpers import DEVS
 from config import BLACKLIST_CHAT
 from config import CMD_HANDLER
-from X.helpers.basic import edit_or_reply
+from BLADE.helpers.basic import edit_or_reply
 
 from .help import *
 

@@ -12,7 +12,7 @@ from BLADE.utils.misc import extract_user
 from .help import *
 
 flood = {}
-profile_photo = "X/modules/cache/pfp.jpg"
+profile_photo = "BLADE/modules/cache/pfp.jpg"
 
 
 @Client.on_message(filters.command(["block"], cmd) & filters.me)

@@ -1,5 +1,5 @@
 try:
-    from X.helpers.SQL import BASE, SESSION
+    from BLADE.helpers.SQL import BASE, SESSION
 except ImportError:
     raise AttributeError
 

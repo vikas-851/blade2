@@ -1,22 +1,32 @@
-import html
-import re
+import aiohttp
+from yourls import YOURLSClient
+from yourls.exceptions import YOURLSKeywordExistsError, YOURLSURLExistsError
+
+YOURLS_URL = None
+YOURLS_KEY = None
 
 
-def cleanhtml(raw_html):
-    cleanr = re.compile("<.*?>")
-    cleantext = re.sub(cleanr, "", raw_html)
-    return cleantext
+async def shorten_url(url, keyword):
+    if not YOURLS_URL or not YOURLS_KEY:
+        return "API ERROR"
+
+    url_checked = await url_check(url)
+    if url_checked:
+        yourls = YOURLSClient(YOURLS_URL, signature=YOURLS_KEY)
+        try:
+            shorturl = yourls.shorten(url, keyword).shorturl
+            result = shorturl
+        except (YOURLSURLExistsError, YOURLSKeywordExistsError):
+            result = "KEYWORD/URL Exists"
+    else:
+        result = "INVALID URL"
+    return result
 
 
-def escape_markdown(text):
-    """Helper function to escape telegram markup symbols."""
-    escape_chars = r"\*_`\["
-    return re.sub(r"([%s])" % escape_chars, r"\\\1", text)
-
-
-def mention_html(user_id, name):
-    return '<a href="tg://user?id={}">{}</a>'.format(user_id, html.escape(name))
-
-
-def mention_markdown(user_id, name):
-    return "[{}](tg://user?id={})".format(escape_markdown(name), user_id)
+async def url_check(url):
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as resp:
+                return resp.status == 200
+    except aiohttp.ClientError:
+        return False

@@ -20,7 +20,7 @@ from pyrogram.types import (
 from BLADE.helpers.data import Data
 from BLADE.helpers.inline import inline_wrapper, paginate_help
 from config import BOT_VER, BRANCH as branch
-from X import CMD_HELP, StartTime, app
+from BLADE import CMD_HELP, StartTime, app
 
 modules = CMD_HELP
 

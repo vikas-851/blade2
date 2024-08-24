@@ -12,7 +12,7 @@ from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
 from config import CMD_HANDLER
-from X.helpers.PyroHelpers import ReplyCheck
+from BLADE.helpers.PyroHelpers import ReplyCheck
 
 from .help import *
 

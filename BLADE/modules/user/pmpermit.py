@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from BLADE.Database.pm import *
-from X.powers import get_id
+from BLADE.powers import get_id
 
 hl = "."
 pm_watcher = 5

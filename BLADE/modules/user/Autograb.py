@@ -3,12 +3,12 @@ from pyrogram import filters
 from pyrogram.types import Message
 from pymongo import MongoClient
 import asyncio
-
+from config import CMD_HANDLER
 # MongoDB Setup
 from BLADE.Mongo import users_collection, settings_collection
 
 # Command to add allowed user
-@app.on_message(filters.me & filters.command("adduser", prefix="."))
+@app.on_message(filters.me & filters.command("adduser", cmd))
 async def add_user(client, message: Message):
     if len(message.command) != 2:
         await message.reply("Usage: .add_user <user_id>")
@@ -24,7 +24,7 @@ async def add_user(client, message: Message):
     await message.reply(f"User {user_id} added to allowed users.")
 
 # Command to remove allowed user
-@app.on_message(filters.me & filters.command("deluser", prefix="."))
+@app.on_message(filters.me & filters.command("deluser", cmd))
 async def del_user(client, message: Message):
     if len(message.command) != 2:
         await message.reply("Usage: .del_user <user_id>")
@@ -40,7 +40,7 @@ async def del_user(client, message: Message):
     await message.reply(f"User {user_id} removed from allowed users.")
 
 # Command to turn photo processing on or off
-@app.on_message(filters.me & filters.command("autograb", prefix="."))
+@app.on_message(filters.me & filters.command("autograb", cmd))
 async def photo_processing(client, message: Message):
     if len(message.command) != 2:
         await message.reply("Usage: .photo_processing <on|off>")

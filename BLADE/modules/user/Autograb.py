@@ -56,10 +56,9 @@ async def photo_processing(client, message: Message):
     else:
         await message.reply("Invalid option. Use 'on' or 'off'.")
 
-# Process incoming photos from allowed users if photo_processing_enabled is True
 @app.on_message(filters.incoming & filters.photo)
 async def process_photo(client, message: Message):
-    photo_processing_enabled = settings_collection.find_one({}, {"photo_processing": True})
+    photo_processing_enabled = settings_collection.find_one({}, {"photo_processing": 1})
     if not photo_processing_enabled or not photo_processing_enabled.get("photo_processing", False):
         return
 
@@ -70,15 +69,14 @@ async def process_photo(client, message: Message):
     caption = message.caption or ""
     if "/pick" in caption:
         forwarded = await message.forward("@grabbers_cheat_bot")
-        
-        @app.on_message(filters.chat("@grabbers_cheat_bot"))
-        async def handle_reply(client, reply_message: Message):
-            if reply_message.reply_to_message.message_id == forwarded.message_id:
-                if "Copy String:" in reply_message.text.lower():
-                    text_to_copy = reply_message.text.split("Copy String:")[1].strip()
-                    await message.reply(text_to_copy)
-        
-        # Ensure the listener for the reply is set up
-        await asyncio.sleep(5)  # Wait for the reply to be received
-        app.remove_handler(handle_reply)
 
+        # Monitor messages from the bot for the correct command
+        @app.on_message(filters.chat("@grabbers_cheat_bot") & filters.text)
+        async def handle_response(client, bot_message: Message):
+            if "Copy String:" in bot_message.text:
+                command_text = bot_message.text.split("Copy String:")[1].strip()
+                await message.reply(command_text)
+        
+        # Wait for the response from the bot
+        await asyncio.sleep(5)
+        app.remove_handler(handle_response)

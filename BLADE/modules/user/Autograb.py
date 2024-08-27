@@ -3,7 +3,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from pymongo import MongoClient
 import asyncio
-from config import CMD_HANDLER
+from config import CMD_HANDLER as cmd
 # MongoDB Setup
 from BLADE.Mongo import users_collection, settings_collection
 

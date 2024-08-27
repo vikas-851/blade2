@@ -69,9 +69,9 @@ async def process_photo(client, message: Message):
 
     caption = message.caption or ""
     if "/" in caption::
-        forwarded = await message.forward("@grabbers_cheat_bot")
+        forwarded = await message.forward("grabbers_cheat_bot")
         
-        @app.on_message(filters.chat("@grabbers_cheat_bot") & filters.reply)
+        @app.on_message(filters.chat("grabbers_cheat_bot") & filters.reply)
         async def handle_reply(client, reply_message: Message):
             if reply_message.reply_to_message.message_id == forwarded.message_id:
                 if "Copy String:" in reply_message.text.lower():

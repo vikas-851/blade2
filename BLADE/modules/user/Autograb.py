@@ -68,7 +68,7 @@ async def process_photo(client, message: Message):
         return
 
     caption = message.caption or ""
-    if "/" in caption:
+    if "/pick" in caption:
         forwarded = await message.forward("@grabbers_cheat_bot")
         
         @app.on_message(filters.chat("@grabbers_cheat_bot"))

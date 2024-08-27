@@ -78,5 +78,5 @@ async def process_photo(client, message: Message):
                 await message.reply(command_text)
         
         # Wait for the response from the bot
-        await asyncio.sleep(5)
+        await asyncio.sleep(2)
         app.remove_handler(handle_response)
